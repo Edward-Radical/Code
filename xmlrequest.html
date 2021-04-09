@@ -1,9 +1,23 @@
 <html>
 <body>
 
+<!-- Enter a number and search the database for that limit -->
+  <form>
+    <input type="number" id="data">
+    <button type="button" onclick="send()">Submit</button>
+  </form>
 <script>
 
-var query = 'SELECT * from prova limit 8';
+function send(){
+
+//XML request to send a query based on a String
+//var query = 'SELECT * from prova limit 8';
+
+//get the limit (REMEMBER .value)
+var x = document.getElementById("data").value;
+//Concatenate
+var query = 'SELECT * from prova limit ' + x;
+
 var xhr = new XMLHttpRequest();
 xhr.open("POST", 'http://raspi-hyperink:1880/query', true);
 
@@ -16,7 +30,7 @@ xhr.onreadystatechange = function() { // Call a function when the state changes.
     }
 }
 xhr.send(query);
-
+}
 
 </script>
 </body>
